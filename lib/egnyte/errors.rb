@@ -1,7 +1,6 @@
-module Egnyte
+module Egnyte 
   class EgnyteError < StandardError
     def initialize(data)
-      super(data.to_s)
       @data = data
     end
 
@@ -26,14 +25,4 @@ module Egnyte
   class OAuthUsernameRequired < StandardError; end
   class OAuthPasswordRequired < StandardError; end
   class MissingAttribute < EgnyteError; end
-
-  class RateLimitExceeded < EgnyteError
-    attr_reader :retry_after
-    def initialize(data, retry_after)
-      super(data)
-      @retry_after = retry_after
-    end
-  end
-  class RateLimitExceededPerSecond < RateLimitExceeded ; end
-  class RateLimitExceededQuota < RateLimitExceeded ; end
 end
